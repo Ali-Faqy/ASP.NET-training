@@ -1,1 +1,99 @@
 # Database Design
+- Part 1: General
+A- Entity represent as rectangle like product.
+B- Attribute represent as cicule like product id.
+C- Relation represent as diamon.
+**************
+Part 2: Entity Type
+A- Strong Entity: Which entity is undepend on other entity (represent as rectangle).
+B- Weak Entity: Which entity is depend on other entity (represent as two rectangle inside others).
+Ex: عندي موظف في شركة وهاض الموظف ابناؤه بدخلو بالتأمين فالابناء هم جدول ظعيف بحذف الاب يحذفو
+**************
+Part 3: Attribute Type:
+A- Simple Attribute: Like product id.
+B- Composite Attribute: يكون عبارة عن متغير ومشتق منه متغيرات اخرى
+Ex: address --> state, city, country.
+C- Derived Attribute
+D- Multivalue Attribute
+E- Complex Attribute: Multivalue + Composite.
+**************
+Part 4: Relations
+A- Degree
+  - Unary : one Entity
+  - Binary: Tow Entity
+  - Ternary: Three or more Entity
+
+B- Cardinality
+  - one to one
+  - one to many
+  - many to many
+
+C- Participation
+  - Fully
+  - Partial
+**************
+Part 5: Mapping Attribute
+A- Simple Attribute: Create it as table.
+B- Multi value Attribute: Best solution is create another table.
+C- Compsite Attribute: Make it in same table.
+D- Derived Attribute: Not saved into database.
+**************
+Part 6: Mapping Relation
+A- One to One
+  - Fully: Make two entity in same table.
+  - optional--total: Add column foreign key in total table.
+  - optional-- optional: Create third table.
+B- One to many
+  - total in many: Add primary key in (one relation) add it into many as foreign key.
+  - optional in many: create other table with primary key connection with (primary in table 1, primary in table 2).
+C- Many to Many: Create third table.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Database Coding (Sql Server)
+Part 1: intro to sql server.
+  - DDL: Data Befinition Language.
+  - DML: Data Manuipulation Language. (Insert, Delete, Update)
+  - DQL: Data Query Language.
+  - DCL: Data Control Language.
+  - TCL: Transaction Control Language.
+
+Part 2: DDL
+  - Create database: CREATE DATABASE dbName
+  - Delete database: DROP DATABASE dbName
+  - Use database: USE dbName
+  - Create table: CREATE TABLE tName(attribute1 datatype, attribute2 datatype, ......)
+
+Part 3: DML
+  - Insert record into table: INSERT INTO tName(a1, a2,...) VALUES(v1, v2,....)
+  Ex: INSERT INTO users(id, name) VALUES (1, 'Ali')
+  - Delete record from table: DELETE FROM tName WHERE a = value
+  EX: DELETE FROM users WHERE id = 1
+  - Update record into table: UPDATE tName SET col = value WHERE col = value
+  EX: UPDATE users SET name = 'Othman' WHERE id = 1
+  - Schema: CREATE SCHEMA sName
+  Ex usage: CREATE SCHEMA Test
+            CREATE TABLE Test.users
+  - Notes:
+    1- How make col primary key: id int primary key identity(Auto increment)
+    2- Foreign key: ManagerId int REFERENCE Employees(id)
+
+Part 4: DQL (Select)
+    A- Select all column: SELECT * FROM tName
+    B- Select specifice column: SELECT col1, col2,... FROM tName
+    C- Where operation: SELECT * FROM tName WHERE col = vlaue
+    D- Order by: SELECT * FROM tName ORDER BY col ASC/DESC
+    E- And: SELECT * FROM tName WHERE col < value AND col = value
+    F- Or: SELECT * FROM tName WHERE col < value OR col = value
+    G- Between: SELECT * FROM tName WHERE col BETWEEN value1 AND value2
+    H- Retuen unique vlaues from table: SELECT DISTINCT col FROM tName
+    I- Return Null/Not Null: SELECT * FROM tName WHERE col is NULL/NOT NULL
+    J- Top: SELECT TOP num FROM tName
+    K- Percent: SELECT TOP (5) PERCENT * FROM users ORDER BY age DESC (اعطني أعلى 5% من النتائج فقط)
+    L- Like: SELECT * FROM tName WHERE col LIKE 'condition'
+       Conditions: 
+          - '%a' : return any col end with a
+          - 'a%' : return any col start with a
+          - '%a%' : return any col contains a
+          - 'a_l' : return any col start with a and end with l and between them one char
+
+
+
